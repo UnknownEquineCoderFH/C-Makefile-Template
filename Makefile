@@ -1,5 +1,5 @@
-FLAGS := -O3 -std=c17 -save-temps -Wall -Wuninitialized -Wshadow -Wwrite-strings -Wconversion -Wunreachable-code
-EXECUTABLE := main.out
+FLAGS := -O3 -std=c17 -Wall -Wuninitialized -Wshadow -Wwrite-strings -Wconversion -Wunreachable-code
+EXECUTABLE := main
 
 .SILENT: clean run build
 
@@ -7,17 +7,14 @@ EXECUTABLE := main.out
 all: run clean
 
 run: build
-	./${EXECUTABLE}
+	./bin/${EXECUTABLE}
 
 build:
-	gcc ${FLAGS} src/*.c -o ${EXECUTABLE}
+	gcc ${FLAGS} src/*.c -o bin/${EXECUTABLE}
 
 %.o: %.c
 	gcc ${FLAGS} -c $< -o $@
 
 .PHONY: clean
 clean:
-	rm -f ${EXECUTABLE}
-	rm -f *.o
-	rm -f *.i
-	rm -f *.s
+	rm -f bin/${EXECUTABLE}
