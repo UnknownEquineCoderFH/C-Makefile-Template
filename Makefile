@@ -1,21 +1,23 @@
-FLAGS := -O3 -std=c17 -save-temps -Wall -Werror -Wuninitialized -Wshadow -Wwrite-strings -Wconversion -Wunreachable-code
+FLAGS := -O3 -std=c17 -save-temps -Wall -Wuninitialized -Wshadow -Wwrite-strings -Wconversion -Wunreachable-code
 EXECUTABLE := main.out
 
 .SILENT: clean run build
 
 .PHONY: all
-all: run
+all: run clean
 
 run: build
 	./${EXECUTABLE}
 
 build:
-	gcc src/*.c -o ${EXECUTABLE}
+	gcc ${FLAGS} src/*.c -o ${EXECUTABLE}
 
 %.o: %.c
-	gcc -c $< -o $@
+	gcc ${FLAGS} -c $< -o $@
 
 .PHONY: clean
 clean:
 	rm -f ${EXECUTABLE}
-	find ./src -name "*.o" -type f -delete
+	rm -f *.o
+	rm -f *.i
+	rm -f *.s
