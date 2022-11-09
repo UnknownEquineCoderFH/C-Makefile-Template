@@ -1,4 +1,4 @@
-FLAGS := -O3 -std=c17 -Wall -Wuninitialized -Wshadow -Wwrite-strings -Wconversion -Wunreachable-code
+FLAGS := -O3 -std=c17 -Wall -Werror -Wuninitialized -Wshadow -Wwrite-strings -Wconversion -Wunreachable-code
 EXECUTABLE := main
 
 .SILENT: clean run build
